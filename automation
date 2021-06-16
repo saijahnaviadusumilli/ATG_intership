@@ -1,0 +1,65 @@
+import time
+
+import login as login
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
+
+
+
+
+driver=webdriver.Chrome(executable_path="F:\chromedriver_win32\chromedriver.exe")
+driver.get("https://www.flickr.com/services/api/explore/flickr.photos.getPopular")
+sign_in = driver.find_element_by_xpath('//*[@id="gn-wrap"]/div[3]/ul/li[2]/a/span').click()
+
+time.sleep(15)
+email = driver.find_element_by_xpath('//*[@id="login-email"]')
+
+
+email.send_keys("saijahnavi27@gmail.com")
+time.sleep(10)
+
+next_button=driver.find_element_by_xpath("/html/body/div/div/div[2]/div/div[2]/form/button/span")
+next_button.click()
+time.sleep(10)
+actions = ActionChains(driver)
+actions.send_keys('jahnavi21062000')
+actions.perform()
+sign_in=driver.find_element_by_xpath("/html/body/div/div/div[2]/div/div[2]/form/button")
+sign_in.click()
+time.sleep(10)
+api_key=driver.find_element_by_xpath('//*[@id="param_api_key"]')
+api_key.send_keys("c04018ecdb9f22a257eea0815b94e706")
+time.sleep(7)
+user_name=driver.find_element_by_xpath('//*[@id="param_user_id"]')
+user_name.send_keys("193206912@N08")
+time.sleep(7)
+select = Select(driver.find_element_by_name('format'))
+select.select_by_visible_text('JSON')
+time.sleep(7)
+radio  = driver.find_element_by_xpath('//*[@id="nosign"]')
+driver.execute_script('arguments[0].click();',radio)
+time.sleep(7)
+
+call_method = driver.find_element_by_xpath('/html/body/div[2]/table[2]/tbody/tr/td[1]/form/input[3]')
+driver.execute_script('arguments[0].click();',call_method)
+time.sleep(10)
+driver.get("https://identity.getpostman.com/login?continue=https%3A%2F%2Fweb.postman.co%2F")
+time.sleep(7)
+email1=driver.find_element_by_xpath('//*[@id="username"]')
+email1.send_keys("saijahnavi27@gmail.com")
+time.sleep(7)
+pwd=driver.find_element_by_xpath('//*[@id="password"]')
+pwd.send_keys("jahnavi2000")
+sigin_button=driver.find_element_by_xpath('//*[@id="sign-in-btn"]').click()
+time.sleep(15)
+create=driver.find_element_by_xpath('/html/body/div[3]/div/div/div[6]/div/div[2]/div/div[2]/div/div[1]/button/span').click()
+time.sleep(15)
+http_request=driver.find_element_by_xpath('/html/body/div[89]/div/div/div/div[2]/div/div/div[2]/div[1]/div[2]/div[1]').click()
+time.sleep(7)
+enter=driver.find_element_by_xpath('/html/body/div[3]/div/div/div[6]/div[1]/div[1]/div/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div/div[1]/div[2]/div/div/div[2]/div[2]/div/div/div/div')
+time.sleep(10)
+enter.send_keys("https://www.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=c04018ecdb9f22a257eea0815b94e706&user_id=193206912%40N08&format=json&nojsoncallback=1")
+time.sleep(10)
+send=driver.find_element_by_xpath('/html/body/div[3]/div/div/div[6]/div[1]/div[1]/div/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/div/div[1]/span').click()
